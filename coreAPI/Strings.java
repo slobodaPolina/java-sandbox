@@ -100,7 +100,7 @@ public class Strings {
         sb1.charAt(0);
         sb1.indexOf("n"); // here we can use only strings (in the string.indexOf chars were possible)
         sb1.length();
-        sb1.substring(0, 1); // returns a string! so does not change the SB
+        sb1.substring(0, 1); // returns a string! so does not change the SB!!! pay attentions - others methods do change it
         sb1.append(7).append('n').append(9f).append(true).append(new Date()); // everything
         sb1.insert(4, "-"); // index and value
         sb1.delete(0, 4); // delete symbols from the start to the end
@@ -113,6 +113,7 @@ public class Strings {
         StringBuilder three = one.append("a"); // 'one' gets 'a', and 'three' contains the 'one' value (same object)
         System.out.println(one == two); // false
         System.out.println(one == three); // true
+        one.equals(two); // equals for SB was not overriden and ot means the same as "==" (so here it is false)
 
         String x = "Hello World";
         String y = "Hello World";

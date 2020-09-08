@@ -3,7 +3,7 @@ package coreAPI;
 public class Arrays {
     //An array is an area of memory on the heap with space for a designated number of elements
     // and the String is an array of chars, which cannot be changed.
-    // And the StrBuilder can be changed (array object is replaced with a new bigger array object when it runs out of space)
+    // the StrBuilder can be changed (array object is replaced with a new bigger array object when it runs out of space)
 
     // array is not the primitive
 
@@ -24,7 +24,7 @@ public class Arrays {
     System.out.println(bugs.toString()); // [Ljava.lang.String;@160bc7c0
     // [L means it is an array ^)
 
-    //The array does not allocate space for the String objects. Instead, it allocates space for a reference to where the objects are really stored/
+    //The array does not allocate space for the String objects. Instead, it allocates space for a references to where the objects are really stored/
     // so the array is the link to an array obj, which contains the links to String objects
 
     String names[]; // points to null
@@ -45,7 +45,7 @@ public class Arrays {
 
     numbers2 = new int[] {1, 3, 6, 8}; // SORTED array!
     java.util.Arrays.binarySearch(numbers2, 6); // 2 (second place)
-    java.util.Arrays.binarySearch(numbers2, 9); // no element found.. but we would put it on index 5 (after element 8), so we do negotiating and minus 1 => -5 -1 = -6 (the output is -6)
+    java.util.Arrays.binarySearch(numbers2, 9); // no element found.. but we would put it on index 4 (after element 8), so we do negotiating and minus 1 => -4 -1 = -5(the output is -5)
 
     //Multidimensional Arrays [][]
     int[][] vars1; // 2D array
