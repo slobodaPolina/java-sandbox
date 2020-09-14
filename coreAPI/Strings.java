@@ -1,6 +1,9 @@
 package coreAPI;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 public class Strings {
     String name = "Fluffy"; // String class is special and doesn’t need to be instantiated with "new". it is the pool method of initiating
@@ -15,6 +18,7 @@ public class Strings {
         System.out.println("a" + "b"); // ab
         System.out.println("a" + "b" + 3); // ab3
         System.out.println(1 + 2 + "c"); // 3c
+        System.out.print("s" + 't'); // u can also add chars. And actually everuthing (.toString() will be called)
     }
     public static void main (String args[]) {
         System.out.println('d' + 'd'); // hah, it is 200 cause the are chars, which become ints (dont u remember?)
