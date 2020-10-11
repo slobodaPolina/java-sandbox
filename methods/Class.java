@@ -67,4 +67,6 @@ class Static {
     static {
         // anything here
     }
+    // final vars cannot be reassigned as well as they were initialized
+    // static final variables must be set exactly once, and it must be in the declaration line or in a static initialization block. ! pay attention
 }

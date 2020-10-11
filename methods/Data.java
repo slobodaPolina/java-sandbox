@@ -3,8 +3,9 @@ package methods;
 public class Data {
     protected void method(int val, String name, StringBuilder sb) {
         val = 4; // here we pass by value, so method has own copy and do not change original variable
-        name = "John"; // hmm here again..? name is passed by value
-        sb.append("new piece"); // it is the same one sb - we pass it (object) by reference
+        name = "John"; // PAY ATTENTION! name is a ref which looks to the "Webby". Then we call a method, we copy a ref - so it is second ref to the one obj
+        // after all, we make this second ref to look to the new object "John". Old ref from that previous method stays the same (and "Webby" stays the same)
+        sb.append("new piece"); // sb is a new second ref to stringbuilder obj. We change it here- so this object available with old sb1 link is changed
     }
     {
         int h = 9;
@@ -13,6 +14,7 @@ public class Data {
         method(h, name, sb1); // h remains 9, name remains "Webby", but sb changes
         System.out.println(h + name);
     }
+
 
     // overloading - u create several methods with the same name but DIFFERENT PARAMS (and additionally u can vary access, exceptions, specifiers, return types)
     void fly(int[] lengths) { }

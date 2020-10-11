@@ -1,4 +1,4 @@
-package operatorsStatements;
+package methods;
 
 public class Constructor {
     public Constructor() {} // this is a constructor - the NAME is exactly THE SAME as class`s, NO RETURN TYPE provided
