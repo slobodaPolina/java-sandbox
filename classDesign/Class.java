@@ -2,7 +2,9 @@ package classDesign;
 
 public class Class extends Animal {
     // Java allows only single inheritance
-    // if the class marked as final, we cant inherit it (if the field is final, cant reassign it)
+    // if the class marked as final, we cant inherit it
+        // if the field is final, cant reassign it,
+        // if the method is final, can`t override or hide(if static) it.
     // if the class inherit nothing, it will automatically inherit class Object
     {
         getAge(); // can call parent`s protected and public methods and vars
