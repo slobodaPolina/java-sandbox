@@ -32,11 +32,12 @@ class Child extends Inheritance {
 
 // ------------------------------------------------
 
-// ATTENTION! private methods can`t be overridden cause they are not accessible - no rules for them
+// ATTENTION! private methods can`t be overridden cause they are not accessible - no rules for them - create anything u like
+
 // rules for overridden methods (methods in parent and child, which have same name and params): if smth is wrong, it will not compile
-// accessibility of child method >= accessibility of parent`s
-// checked exceptions of child method <= checked exceptions of parent`s
-// returned type of child method <= returned type of parent`s (I mean child`s return type if the same or subclass of parent`s return type)
+// 1. accessibility of child method >= accessibility of parent`s
+// 2. checked exceptions of child method <= checked exceptions of parent`s
+// 3. returned type of child method <= returned type of parent`s (I mean child`s return type if the same or subclass of parent`s return type)
 
 class Bird {
     public void fly() {
@@ -53,7 +54,7 @@ class Eagle extends Bird {
     }
     public int eat(int food) { // it is overridden - name and params are the same. There are rules, at least return type should be same or subclass, but "int" is not "sub-void"
         // it means then we call concrete version of parent`s method, we expect it to behave the same way -
-        // to return smth the same or smth can e easily mapped, we expect not to throw smth unexpected, we expect to be sure we can access to call the method at all!
+        // to return smth the same or smth can be easily mapped, we expect not to throw smth unexpected, we expect to be sure we can access to call the method at all!
         System.out.println("Bird is eating " + food + " units of food");
         return food;
     }
@@ -84,47 +85,77 @@ class Panda extends Bear {
 
 
 // it is called "hiding", new static methods 'hide' the old ones and it is not called overriding
-// Unlike overriding a method, in which a child method replaces the parent method in calls defined in both the parent and child,
-// hidden methods only replace parent methods in the calls defined in the child class.
 
-class Marsupial {
-    public static boolean isBiped2() { // static method
-        return false;
+// Unlike OVERRIDING a method, in which a CHILD METHOD totally REPLACES THE PARENT METHOD in calls defined in both the parent and child,
+// HIDDEN methods only REPLACE parent methods in the CALLS defined in the CHILD CLASS.
+
+class Parent {
+    public static String stMethod() {
+        return "Parent";
     }
-    public void getMarsupialDescription2() {
-        System.out.println("Marsupial walks on two legs: " + isBiped2()); // it only knows about isBiped() from its own class definition
+    public void callParentStatic() {
+        System.out.println("Called static method from parent class: " + stMethod()); // it only knows about isBiped() from its own class definition
         // the parent version of a hidden method is always executed if the call to the method is defined in the parent class
     }
- // ---------
-    public boolean isBiped() { // non-static method
-        return false;
+    // ---------
+    public String nonStMethod() {
+        return "Parent"; // is not called
     }
-    public void getMarsupialDescription() {
-        System.out.println("Marsupial walks on two legs: " + isBiped()); // it is replaced at runtime in the parent class with the call to the child class’s method
+    public void callParentNonStatic() {
+        System.out.println("Called non-static method from parent class: " + nonStMethod()); // it is replaced at runtime in the parent class with the call to the child class’s method
+    }
+    // ---------
+    String var = "Parent";
+    public void getParentVar() {
+        System.out.println("Called var from parent class: " + var);
     }
 }
 
-class Kangaroo extends Marsupial {
-    public static boolean isBiped2() { // hidden method (overridden static)
-        return true;
+class Main extends Parent {
+    public static String stMethod() { // hidden method (overridden static)
+        return "Child";
     }
-    public void getKangarooDescription2() {
-        System.out.println("Kangaroo hops on two legs: " + isBiped2()); // it uses own method
+    public void callChildStatic() {
+        System.out.println("Called static method from chld class: " + stMethod()); // it uses own method
+        // use super.stMethod() to get parent`s one from here
     }
- // ------
-    public boolean isBiped() { // overridden method
-        return true;
+    // ------
+    public String nonStMethod() { // overridden method
+        return "Child";
     }
-    public void getKangarooDescription() {
-        System.out.println("Kangaroo hops on two legs: " + isBiped());  // it uses own method
+    public void callChildNonStatic() {
+        System.out.println("Called non-static method from child class: " + nonStMethod());  // it uses own method
+        // use super.nonStMethod() to get parent`s one from here
     }
- // ------
-    public static void main(String[] args) {
-        Kangaroo joey = new Kangaroo();
-        joey.getMarsupialDescription2(); // "Marsupial walks on two legs: FALSE"
-        joey.getKangarooDescription2(); // "Kangaroo hops on two legs: TRUE"
+    // ------
+    String var = "Child";
+    public void getChildVar() {
+        System.out.println("Called var from child class: " + var);
+        // use super.var to get parent`s value from here
+    }
 
-        joey.getMarsupialDescription(); // "Marsupial walks on two legs: TRUE"
-        joey.getKangarooDescription(); // "Kangaroo hops on two legs: TRUE"
+    // -------
+    public static void main(String[] args) {
+        Main joey = new Main();
+        // statics (hidden methods) - if called from the child class, child method used. If called from parent`s - parent`s
+        joey.callParentStatic(); // "Called static method from parent class: Parent"
+        joey.callChildStatic(); // "Called static method from chld class: Child"
+
+        // non-statics (overriding) - only child version of the method is called
+        joey.callParentNonStatic(); // "Called non-static method from parent class: Child"
+        joey.callChildNonStatic(); // "Called non-static method from child class: Child"
+
+        // variables (hiding) - the same as static methods
+        // attention! no diff if the ver is static or not - the behaviour is the same
+        joey.getParentVar(); // "Called var from parent class: Parent"
+        joey.getChildVar(); // "Called var from child class: Child"
+
+
+        // ufff
+        // well in the end u have to pay attention to the type of reference
+        Parent parent = new Main();
+        System.out.println(parent.var); // "Parent" (reference type is parent, does not matter the object actually stored)
+        Main main = new Main();
+        System.out.println(main.var); // ofc "Child"
     }
 }
