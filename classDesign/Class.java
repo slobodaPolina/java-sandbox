@@ -32,7 +32,7 @@ class Mammal {
     }
 }
 class Elephant extends Mammal {
-    // super() with no args is added in child`s constructors at the first line if no other super(...) is written
+    // super() with no args is added in child`s constructors at the first line if no other super(...) or this(...) is written
     // so parent class always has to have the default constructor (it can have none and the default will be generated)
     // or u can create child`s constructor with some super(...) call yourself
     public Elephant(int y) {

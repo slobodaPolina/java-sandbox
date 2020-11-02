@@ -18,9 +18,9 @@ class Swan extends MyAnimal { // the class which directly extends abstract, has 
     }
 }
 
-// this concrete class really has to implement all the abstract methods from parent if you gonna use it
+// concrete class really has to implement all the abstract methods from parent if you gonna use it
 // so implement or continue this abstract chain^) I mean abstract class can extend another abstract class and does not has to override parent abstract methods
-// but if u create a concrete class extends that one, the concrete class will override all the abstract methods in this chain (parent`s, grandparrent`s and so on)
+// but if u create a concrete class extends that one, the concrete class will override all the abstract methods in this chain (parent`s, grandparent`s and so on)
 // little tip: actually if abstract method from grandpa was implemented in abstract parent, concrete class might omit own implementation:
 abstract class GrandPa {
     abstract void method();
@@ -39,12 +39,12 @@ class Tiger extends MyAnimal { // has to be abstract or override all the methods
     abstract void method() {} // ABSTRACT METHOD HAS TO BE IN ABSTRACT CLASS, but abstract class is not forced to contain abstract methods
 }
 
-abstract final class Fatal {} // abstract class can never be final (haha what is the reason for its existence?) or private (i am not sure if classes can be private at all_
+abstract final class Fatal {} // abstract class can never be final (haha what is the reason for its existence?) or private (i am not sure if classes can be private at all)
 // abstract methods can never be final and can never be private for the same reason (what for? they will not be available to override)
 // so neither abstract classes nor abstract methods inside them can be private or final
 
 abstract class Test {
     public static void main(String[] args) {
-        Test test = new Test(); // ofc we cant create an istance of abstract
+        Test test = new Test(); // ofc we cant create an instance of abstract
     }
 }

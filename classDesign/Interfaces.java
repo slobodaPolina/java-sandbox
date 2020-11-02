@@ -1,7 +1,7 @@
 package classDesign;
 
 // public or default (NEVER private or protected)
-interface Inter { // the word 'abstract' is inserted automatically
+public interface Inter { // the word 'abstract' is inserted automatically
     public static final int CONST = 5; // vars are available. "public static final" is assumed (inserted automatically) - so it can`t be abstract or non-public
     // and also the value of var must be set here cause it is "static final". and as it is static it can be used without an instance
     int CONSTANT = Interf.CONSTANT;
@@ -18,7 +18,7 @@ interface Inter { // the word 'abstract' is inserted automatically
     // interface cant be created directly cause it is abstract
     // it does not have to have any methods at all (it can be empty)
     // it can`t be final or private (or even protected) cause it is abstract
-    // the non-default methods of interface are public and abstract
+    // the non-default and non-static methods of interface are abstract. Everything in interface is public
 }
 
 class Cl implements Inter {
@@ -57,16 +57,15 @@ interface NewInter {
     }
     // public is inserted automatically into default method of interface (as it is inserted into other declarations of methods in interface) - so no other modifiers allowed
     // Default method can only be declared in interface (never in abstract class - in abstract class u just create a common method instead of abstract one)
-    // default methods must have a body, and non-default declarations of methods in interface(abstract ones) must not!
+    // default methods must have a body, and non-default and non-static declarations of methods in interface(abstract ones) must not!
     // default method CAN`T be static/final/abstract (and not assumed to)
 }
 interface NewInter2 extends NewInter {
-    double getTemperature(); // child interface can redeclare default method as abstract mo make own children realise it
+    double getTemperature(); // child interface can redeclare default method as abstract to make own children realise it
     default boolean hasScales() { // and redeclare abstract method to make it default (concrete) for own children
         return true;
     }
     // default method can also be overridden as default one (just to change the default implementation)
-    // and the more, abstract one can be redeclared to change modifiers (strange case)
 }
 
 

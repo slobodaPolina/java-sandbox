@@ -139,7 +139,7 @@ class Main extends Parent {
         Main joey = new Main();
         // statics (hidden methods) - if called from the child class, child method used. If called from parent`s - parent`s
         joey.callParentStatic(); // "Called static method from parent class: Parent"
-        joey.callChildStatic(); // "Called static method from chld class: Child"
+        joey.callChildStatic(); // "Called static method from child class: Child"
 
         // non-statics (overriding) - only child version of the method is called
         joey.callParentNonStatic(); // "Called non-static method from parent class: Child"
